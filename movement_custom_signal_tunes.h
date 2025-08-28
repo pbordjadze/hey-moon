@@ -29,8 +29,7 @@ int8_t signal_tune[] = {
     BUZZER_NOTE_C8, 5,
     BUZZER_NOTE_REST, 6,
     BUZZER_NOTE_C8, 5,
-    0
-};
+    0};
 #endif // SIGNAL_TUNE_DEFAULT
 
 #ifdef SIGNAL_TUNE_ZELDA_SECRET
@@ -43,8 +42,7 @@ int8_t signal_tune[] = {
     BUZZER_NOTE_E5, 8,
     BUZZER_NOTE_G5SHARP_A5FLAT, 8,
     BUZZER_NOTE_C6, 20,
-    0
-};
+    0};
 #endif // SIGNAL_TUNE_ZELDA_SECRET
 
 #ifdef SIGNAL_TUNE_MARIO_THEME
@@ -62,8 +60,7 @@ int8_t signal_tune[] = {
     BUZZER_NOTE_G6, 8,
     BUZZER_NOTE_REST, 30,
     BUZZER_NOTE_G5, 8,
-    0
-};
+    0};
 #endif // SIGNAL_TUNE_MARIO_THEME
 
 #ifdef SIGNAL_TUNE_MGS_CODEC
@@ -89,8 +86,7 @@ int8_t signal_tune[] = {
     BUZZER_NOTE_C6, 1,
     BUZZER_NOTE_G5SHARP_A5FLAT, 1,
     BUZZER_NOTE_C6, 1,
-    0
-};
+    0};
 #endif // SIGNAL_TUNE_MGS_CODEC
 
 #ifdef SIGNAL_TUNE_KIM_POSSIBLE
@@ -105,8 +101,7 @@ int8_t signal_tune[] = {
     BUZZER_NOTE_REST, 2,
     BUZZER_NOTE_G7, 6,
     BUZZER_NOTE_G4, 2,
-    0
-};
+    0};
 #endif // SIGNAL_TUNE_KIM_POSSIBLE
 
 #ifdef SIGNAL_TUNE_POWER_RANGERS
@@ -122,8 +117,7 @@ int8_t signal_tune[] = {
     BUZZER_NOTE_F8, 6,
     BUZZER_NOTE_REST, 8,
     BUZZER_NOTE_D8, 6,
-    0
-};
+    0};
 #endif // SIGNAL_TUNE_POWER_RANGERS
 
 #ifdef SIGNAL_TUNE_LAYLA
@@ -141,8 +135,7 @@ int8_t signal_tune[] = {
     BUZZER_NOTE_C7, 5,
     BUZZER_NOTE_REST, 1,
     BUZZER_NOTE_D7, 20,
-    0
-};
+    0};
 #endif // SIGNAL_TUNE_LAYLA
 
 #ifdef SIGNAL_TUNE_HARRY_POTTER_SHORT
@@ -162,8 +155,7 @@ int8_t signal_tune[] = {
     BUZZER_NOTE_A6, 24,
     BUZZER_NOTE_REST, 1,
     BUZZER_NOTE_F6SHARP_G6FLAT, 24,
-    0
-};
+    0};
 #endif // SIGNAL_TUNE_HARRY_POTTER_SHORT
 
 #ifdef SIGNAL_TUNE_HARRY_POTTER_LONG
@@ -197,6 +189,5 @@ int8_t signal_tune[] = {
     BUZZER_NOTE_REST, 1,
     BUZZER_NOTE_B5, 24,
 
-    0
-};
+    0};
 #endif // SIGNAL_TUNE_HARRY_POTTER_LONG
