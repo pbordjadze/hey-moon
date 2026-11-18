@@ -172,6 +172,9 @@ void watch_buzzer_play_note(watch_buzzer_note_t note, uint16_t duration_ms) {
 }
 
 void watch_buzzer_play_note_with_volume(watch_buzzer_note_t note, uint16_t duration_ms, watch_buzzer_volume_t volume) {
+    // Power fix: enable the TCC just for this note if nothing else had it on.
+    bool was_enabled = tcc_is_enabled(0);
+    if (!was_enabled) _watch_enable_tcc();
     if (note == BUZZER_NOTE_REST) {
         watch_set_buzzer_off();
     } else  {
@@ -180,6 +183,7 @@ void watch_buzzer_play_note_with_volume(watch_buzzer_note_t note, uint16_t durat
     }
     delay_ms(duration_ms);
     watch_set_buzzer_off();
+    if (!was_enabled) _watch_disable_tcc();
 }
 
 void _watch_enable_tcc(void) {
@@ -257,7 +261,9 @@ void _watch_disable_tcc(void) {
 }
 
 void watch_enable_leds(void) {
-    watch_enable_buzzer_and_leds();
+    if (!tcc_is_enabled(0)) {
+        _watch_enable_tcc();
+    }
 }
 
 void watch_disable_leds(void) {
@@ -273,6 +279,11 @@ void watch_set_led_color(uint8_t red, uint8_t green) {
 }
 
 void watch_set_led_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
+    // Power fix: the TCC is no longer left running from boot, so turn it on only while
+    // the LED is lit, and shut it off again when the LED goes dark (unless a buzzer
+    // sequence is still using it).
+    bool turning_on = (red | green | blue) != 0;
+    if (turning_on) watch_enable_leds();
     if (tcc_is_enabled(0)) {
         uint32_t period = tcc_get_period(0);
         tcc_set_cc(0, (WATCH_RED_TCC_CHANNEL) % 4, ((period * (uint32_t)red * 1000ull) / 255000ull), true);
@@ -287,6 +298,7 @@ void watch_set_led_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
         (void) blue; // silence warning
 #endif
     }
+    if (!turning_on && !_callback_running && tcc_is_enabled(0)) _watch_disable_tcc();
 }
 
 void watch_set_led_red(void) {

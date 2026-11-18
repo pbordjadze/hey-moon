@@ -331,6 +331,8 @@ void movement_request_wake() {
 
 static void end_buzzing() {
     movement_state.is_buzzing = false;
+    // Power fix: if the LED went dark while the chime played, nothing else will turn the TCC off.
+    if (movement_state.light_ticks == -1) watch_disable_buzzer();
 }
 
 static void end_buzzing_and_disable_buzzer(void) {
@@ -913,6 +915,8 @@ bool app_loop(void) {
         }
         if (movement_state.alarm_ticks == 0) {
             movement_state.alarm_ticks = -1;
+            // Power fix: the failsafe above turned the TCC on for the alarm; turn it back off.
+            if (movement_state.light_ticks == -1 && !movement_state.is_buzzing) watch_disable_buzzer();
             _movement_disable_fast_tick_if_possible();
         }
     }
